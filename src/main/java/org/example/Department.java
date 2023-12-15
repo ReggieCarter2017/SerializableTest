@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.Serializable;
+import java.util.function.Function;
 
 public class Department implements Serializable {
     private String name;

@@ -1,13 +1,17 @@
 package org.example;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class SerializableClass {
-    public static void savePerson(Object object) {
+    public static void saveObject(Object object) {
         if (Serializable.class.isAssignableFrom(object.getClass())) {
             Path path = Path.of(object.getClass().getName() + "_" + UUID.randomUUID().toString());
             try {
@@ -36,5 +40,14 @@ public class SerializableClass {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<Department> createDepartments(int count) {
+        String randomString = RandomStringUtils.randomAlphabetic(10);
+        List<Department> departments = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            departments.add(new Department(randomString, randomString, randomString));
+        }
+        return departments;
     }
 }
